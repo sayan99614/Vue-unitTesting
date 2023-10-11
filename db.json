@@ -1,0 +1,59 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1",
+      "body": "This is the first post"
+    },
+    {
+      "id": 2,
+      "title": "Post 2",
+      "body": "This is the second post"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "text": "Comment 1"
+    },
+    {
+      "id": 2,
+      "postId": 1,
+      "text": "Comment 2"
+    },
+    {
+      "id": 3,
+      "postId": 2,
+      "text": "Comment 3"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "name": "sample task",
+      "user": null,
+      "completed": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "dheeman.p@simformsolutions.com",
+      "username": "dheeman",
+      "password": "Simform@123"
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 1697007365363,
+      "username": "staller",
+      "email": "staller@mywondr.co",
+      "password": "123456789"
+    }
+  ]
+}
