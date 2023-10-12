@@ -32,7 +32,7 @@
     {
       "id": 1,
       "name": "sample task",
-      "user": null,
+      "userId": null,
       "completed": false
     }
   ],
