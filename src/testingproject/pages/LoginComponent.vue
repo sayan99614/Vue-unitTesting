@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h2>Login</h2>
-    <form @submit.prevent="login">
+    <form data-test="loginform" @submit.prevent="login">
       <div class="form-group">
         <label for="username">Username:</label>
         <input
@@ -9,6 +9,7 @@
           id="username"
           v-model="userCredentials.email"
           required
+          data-test="email"
         />
       </div>
       <div class="form-group">
@@ -17,6 +18,7 @@
           type="password"
           id="password"
           v-model="userCredentials.password"
+          data-test="password"
           required
         />
       </div>
@@ -53,7 +55,7 @@ async function login() {
       );
     }
 
-    if (response.status === "success") {
+    if (response && response.status === "success") {
       router.replace("/");
     } else {
       alert(response.error);

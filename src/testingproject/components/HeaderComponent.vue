@@ -5,12 +5,15 @@
         <router-link to="/">My App</router-link>
       </div>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li v-if="!isUser"><router-link to="/login">Login</router-link></li>
-        <li v-if="!isUser"><router-link to="/signup">Signup</router-link></li>
-        <li><router-link to="/task">Create Task</router-link></li>
-        <li v-if="isUser">
-          <router-link to="/user">{{ user.username }}</router-link>
+        <li data-test="navlinks"><router-link to="/">Home</router-link></li>
+        <li data-test="navlinks" v-if="!isLoggedIn">
+          <router-link to="/login">Login</router-link>
+        </li>
+        <li data-test="navlinks" v-if="!isLoggedIn">
+          <router-link to="/signup">Signup</router-link>
+        </li>
+        <li data-test="task" v-if="isLoggedIn">
+          <router-link to="/task">Create Task</router-link>
         </li>
       </ul>
     </nav>
@@ -19,17 +22,11 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
-import { storeToRefs } from "pinia";
 import { computed } from "vue";
 
-const { user } = storeToRefs(useUserStore());
+const userStore = useUserStore();
 
-const isUser = computed(() => {
-  if (user.value && user.value.id) {
-    return true;
-  }
-  return false;
-});
+const isLoggedIn = computed(() => userStore.isLoggedIn);
 </script>
 
 <style scoped>
