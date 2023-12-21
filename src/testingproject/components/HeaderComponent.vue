@@ -2,7 +2,7 @@
   <header>
     <nav>
       <div class="logo">
-        <router-link to="/">My App</router-link>
+        <router-link to="/">Task Taker</router-link>
       </div>
       <ul>
         <li data-test="navlinks"><router-link to="/">Home</router-link></li>
@@ -12,21 +12,30 @@
         <li data-test="navlinks" v-if="!isLoggedIn">
           <router-link to="/signup">Signup</router-link>
         </li>
-        <li data-test="task" v-if="isLoggedIn">
-          <router-link to="/task">Create Task</router-link>
+        <li data-test="task" v-if="isLoggedIn" @click="showTaskForm">
+          Create Task
         </li>
+        <li data-test="logout" v-if="isLoggedIn" @click="logout">Logout</li>
       </ul>
     </nav>
   </header>
 </template>
 
 <script setup>
+import { useTaskStore } from "@/stores/tsak";
 import { useUserStore } from "@/stores/user";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const userStore = useUserStore();
-
+const { showTaskForm } = useTaskStore();
 const isLoggedIn = computed(() => userStore.isLoggedIn);
+
+const logout = () => {
+  userStore.logoutUser();
+  router.replace("/");
+};
 </script>
 
 <style scoped>

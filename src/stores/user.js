@@ -16,19 +16,13 @@ export const useUserStore = defineStore("user", {
 
     async registerUser(payload) {
       try {
-        const response = await fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: new Date().valueOf(),
-            username: payload.username,
-            email: payload.email,
-            password: payload.password,
-          }),
+        const response = await axios.post("http://localhost:3000/users", {
+          id: payload.id,
+          username: payload.username,
+          email: payload.email,
+          password: payload.password,
         });
-        const data = await response.json();
+        const data = response.data;
         if (data.length > 0) {
           this.$state.user = data[0];
           this.$state.isLoggedIn = true;
@@ -48,7 +42,7 @@ export const useUserStore = defineStore("user", {
         );
         const data = response.data;
 
-        if (data.length > 0 && data[0].password === password) {
+        if (data && data.length > 0 && data[0].password === password) {
           this.$state.user = data[0];
           this.$state.isLoggedIn = true;
 
@@ -59,6 +53,12 @@ export const useUserStore = defineStore("user", {
       } catch (error) {
         return { status: "error", error: error.message };
       }
+    },
+
+    logoutUser() {
+      this.user = {};
+      this.isLoggedIn = false;
+      return;
     },
   },
 });

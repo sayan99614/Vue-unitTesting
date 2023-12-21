@@ -1,19 +1,32 @@
 <template>
   <div class="signup">
     <h2>Sign Up</h2>
-    <form @submit.prevent="signup">
+    <form data-test="signupform" @submit.prevent="signup">
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="userData.username" required />
+        <input
+          type="text"
+          data-test="name"
+          id="username"
+          v-model="userData.username"
+          required
+        />
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" v-model="userData.email" required />
+        <input
+          type="email"
+          data-test="email"
+          id="email"
+          v-model="userData.email"
+          required
+        />
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
         <input
           type="password"
+          data-test="password"
           id="password"
           v-model="userData.password"
           required
@@ -33,6 +46,7 @@ const { registerUser } = useUserStore();
 const router = useRouter();
 
 const userData = ref({
+  id: new Date().valueOf(),
   username: "",
   email: "",
   password: "",
