@@ -63,14 +63,14 @@
   "users": [
     {
       "id": 1,
-      "email": "dheeman.p@simformsolutions.com",
+      "email": "test@test.com",
       "username": "dheeman",
-      "password": "Simform@123"
+      "password": "test123456"
     },
     {
       "id": 1697007365363,
       "username": "staller",
-      "email": "staller@mywondr.co",
+      "email": "staller@test.co",
       "password": "123456789"
     }
   ]
